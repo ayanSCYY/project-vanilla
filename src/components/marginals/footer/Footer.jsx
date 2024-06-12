@@ -71,7 +71,7 @@ export default function MyFooter() {
         </FooterTop>
         <FooterBottom>
           {footerData.bottom.map((item, index) => (
-            <a key={index} href={item.href}>
+            <a key={index} href={item.href} target="_blank" rel="noopener noreferrer">
               {item.item}
             </a>
           ))}
