@@ -4,9 +4,11 @@ import { events, nextArrowIcon, prevArrowIcon } from '../../config/content/event
 import EventModal from './EventModal'
 import EventsWrapper from './EventsWrapper'
 import { createPortal } from 'react-dom'
+import { RegisterModal } from './registerModal'
 
 export default function Events() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
   const [event, setEvent] = useState(null)
   const swiperRef = useRef(null)
 
@@ -17,6 +19,19 @@ export default function Events() {
       setEvent(event)
     }
   }
+
+  function handleRegisterModal(id) {
+    setIsRegisterModalOpen(true)
+    const event = events.find((event) => event.id === id)
+    if (event) {
+      setEvent(event)
+    }
+  }
+
+  function handleRegisterModalClose() {
+    setIsRegisterModalOpen(false)
+  }
+
   function handleModalClose() {
     setIsModalOpen(false)
   }
@@ -40,6 +55,10 @@ export default function Events() {
         isModalOpen && <EventModal closeModal={handleModalClose} event={event} />,
         overlay
       )}
+      {createPortal(
+        isRegisterModalOpen && <RegisterModal closeRegisterModal={handleRegisterModalClose} event={event} />,
+        overlay
+      )}
       <EventsTitleMobile>Events</EventsTitleMobile>
       <Container>
         <Section>
@@ -47,6 +66,7 @@ export default function Events() {
           <EventsWrapper
             events={events}
             handleSelectEvent={handleModalOpen}
+            handleRegisterEvent={handleRegisterModal}
             swiperRef={swiperRef}
           />
           <Arrow src={nextArrowIcon} alt="Next" onClick={handleNext} />

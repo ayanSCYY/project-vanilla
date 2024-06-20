@@ -17,6 +17,7 @@ import {
   SeeMoreText
 } from './eventCard.styles'
 import { seeMoreIcon } from '../../config/content/events/events'
+import { Link } from 'react-router-dom'
 
 EventCard.propTypes = {
   event: PropTypes.shape({
@@ -27,12 +28,14 @@ EventCard.propTypes = {
     details: PropTypes.array,
     rules: PropTypes.string
   }),
-  handleSelectEvent: PropTypes.func
+  handleSelectEvent: PropTypes.func,
+  handleRegisterEvent: PropTypes.func
 }
 
 export default function EventCard({
   event: { img, id, title, subtitle, details, rules },
-  handleSelectEvent
+  handleSelectEvent,
+  handleRegisterEvent
 }) {
   function genDetails(str, length) {
     str = str.trim()
@@ -67,7 +70,10 @@ export default function EventCard({
           </CardBody>
           <CardFooter>
             <ButtonRules onClick={redirectToRules}>Rulebook</ButtonRules>
-            <Button id={id}>Register</Button>
+            <Link to="/registerModal">
+            <Button onClick={() => handleRegisterEvent(id)}>Register</Button>
+            </Link>
+            
           </CardFooter>
         </ContentWrapper>
       </Section>

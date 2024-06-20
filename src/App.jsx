@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Slide } from 'react-toastify'
 import { Suspense } from 'react'
 import Loader from './components/loader/Loader.jsx'
+import { RegisterModal } from './components/events/registerModal.jsx'
 const App = () => {
   return (
     <AuthProvider>
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/playground" element={<Playground />} />
           <Route path="/register" element={<Registration />} />
+          <Route path="/registerModal" element={<RegisterModal />} />
         </Routes>
       </Router>
     </AuthProvider>

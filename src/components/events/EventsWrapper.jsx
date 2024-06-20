@@ -11,10 +11,11 @@ import { Navigation, Autoplay } from 'swiper/modules'
 EventsWrapper.propTypes = {
   events: PropTypes.array.isRequired,
   handleSelectEvent: PropTypes.func.isRequired,
+  handleRegisterEvent: PropTypes.func.isRequired,
   swiperRef: PropTypes.object.isRequired
 }
 
-function EventsWrapper({ events, handleSelectEvent, swiperRef }) {
+function EventsWrapper({ events, handleSelectEvent, handleRegisterEvent, swiperRef }) {
   useEffect(() => {
     if (swiperRef.current) {
       const swiper = swiperRef.current
@@ -43,7 +44,7 @@ function EventsWrapper({ events, handleSelectEvent, swiperRef }) {
       >
         {events.map((event) => (
           <SwiperSlide key={event.id}>
-            <EventCard event={event} handleSelectEvent={handleSelectEvent} />
+            <EventCard event={event} handleSelectEvent={handleSelectEvent} handleRegisterEvent={handleRegisterEvent} />
           </SwiperSlide>
         ))}
         <SwiperSlide>
