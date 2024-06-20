@@ -5,13 +5,13 @@ import { CREATE_REGISTRATION } from "../../graphQL/mutations/eventregistrationMu
 
 export const RegisterModal = () => {
     const [alcheID, setAlcheID] = useState('');
-    const eventid = '1'; 
+    const EventId = '1'; 
 
     const [registerEvent] = useMutation(CREATE_REGISTRATION);
 
     async function handleSubmit() {
         try {
-            await registerEvent({ variables: { input: { userid: alcheID, eventid } } });
+            await registerEvent({ variables: { input: { userId: alcheID, EventId } } });
             console.log("Registration successful!");
         } catch (error) {
             console.error("Error registering:", error);
